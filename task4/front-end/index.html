@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Front-end</title>
+    <script>
+        async function getMessage() {
+            const res = await fetch('http://localhost:5252/');
+            const data = await res.json();
+            document.getElementById('message').innerText = data.message;
+        }
+        window.onload = getMessage;
+    </script>
+</head>
+<body>
+    <h1>Front-end connecté</h1>
+    <p id="message">Chargement...</p>
+</body>
+</html>

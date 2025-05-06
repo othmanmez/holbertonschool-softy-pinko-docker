@@ -1,11 +1,11 @@
-FROM ubuntu:latest
-
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y python3 python3-pip && \
-    pip3 install flask flask-cors
+FROM python:3.9-slim
 
 WORKDIR /app
+
 COPY ./api.py /app/api.py
 
-CMD ["python3", "api.py"] 
+RUN pip install flask flask-cors
+
+EXPOSE 5252
+
+CMD ["python", "api.py"]

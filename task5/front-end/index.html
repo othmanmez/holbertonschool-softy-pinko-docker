@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-End</title>
+</head>
+<body>
+    <h1>Front-End</h1>
+    <div id="dynamic-content"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Charger les données dynamiques depuis le back-end via le proxy
+        $(function() {
+            $.ajax({
+                type: "GET",
+                url: "/api/hello",
+                success: function (data) {
+                    console.log(data);
+                    $('#dynamic-content').text(data.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

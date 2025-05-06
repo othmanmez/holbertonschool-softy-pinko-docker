@@ -1,4 +1,8 @@
+# Utiliser une image officielle de Nginx
 FROM nginx:latest
 
-COPY ./softy-pinko-front-end /var/www/html/softy-pinko-front-end
-COPY ./softy-pinko-front-end.conf /etc/nginx/conf.d/default.conf 
+# Copier les fichiers frontend dans le répertoire de Nginx
+COPY . /usr/share/nginx/html
+
+# Exposer le port 80 pour que Nginx soit accessible
+EXPOSE 80

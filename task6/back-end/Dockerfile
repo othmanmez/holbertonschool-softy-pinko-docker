@@ -1,11 +1,18 @@
-FROM ubuntu:latest
+# Utilisation de l'image Python de base
+FROM python:3.9-slim
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y python3 python3-pip && \
-    pip3 install flask flask-cors
-
+# Répertoire de travail
 WORKDIR /app
-COPY ./api.py /app/api.py
 
-CMD ["python3", "api.py"] 
+# Copier les fichiers nécessaires
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copier le code source
+COPY . /app/
+
+# Exposer le port
+EXPOSE 5252
+
+# Commande pour démarrer l'application
+CMD ["python", "app.py"]
