@@ -1,19 +1,19 @@
-# Utiliser une image de base Ubuntu
-FROM ubuntu:latest
+FROM python:3.12-slim
 
-# Installer Python et pip
-RUN apt-get update && apt-get install -y python3 python3-pip
+# Installer les dépendances
+RUN apt-get update && apt-get install -y python3-pip
 
-# Installer Flask et flask-cors
-RUN pip3 install flask flask-cors
+# Installer Flask et Flask-CORS
+RUN pip install flask flask-cors
 
-# Copier le fichier API dans le conteneur
+# Créer un répertoire de travail
 WORKDIR /app
-COPY ./api.py /app/api.py
 
-# Exposer le port 5252 pour l'API
+# Copier le fichier de l'API
+COPY api.py /app/api.py
+
+# Exposer le port
 EXPOSE 5252
 
-# Lancer l'application Flask
-CMD ["python3", "api.py"]
- 
+# Lancer le serveur Flask
+CMD ["python", "api.py"]
